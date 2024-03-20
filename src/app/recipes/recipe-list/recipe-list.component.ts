@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 
 @Component({
   selector: 'app-recipe-list',
@@ -6,5 +6,10 @@ import { Component } from '@angular/core';
   styleUrl: './recipe-list.component.css'
 })
 export class RecipeListComponent {
+  recipes = []
+
+  constructor() {
+
+  }
 
 }
