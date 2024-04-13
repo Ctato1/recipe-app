@@ -8,9 +8,10 @@ import {Subscription} from "rxjs";
   templateUrl: './shopping-list.component.html',
   styleUrl: './shopping-list.component.css',
 })
-export class ShoppingListComponent implements OnInit, OnDestroy{
+export class ShoppingListComponent implements OnInit, OnDestroy {
   ingredients!: Ingredient[];
   private igChangeSub!: Subscription;
+
   constructor(private shoppingListService: ShoppingListService) {
   }
 
@@ -20,8 +21,13 @@ export class ShoppingListComponent implements OnInit, OnDestroy{
       this.ingredients = ingredient
     })
   }
+
   ngOnDestroy() {
     this.igChangeSub.unsubscribe();
+  }
+
+  onEditItem(index: number) {
+    this.shoppingListService.startedEditing.next(index)
   }
 
 }
