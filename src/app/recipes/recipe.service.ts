@@ -31,12 +31,28 @@ export class RecipeService {
   getRecipes(): Recipe[] {
     return this.recipes.slice();
   }
-  addRecipe(recipe:Recipe){
+
+  addRecipe(recipe: Recipe) {
     this.recipes.push(recipe);
     this.recipesChanged.next(this.recipes.slice());
   }
-  updateRecipe(index:number,newRecipe:Recipe){
-    this.recipes[index] = newRecipe;
+
+  updateRecipe(index: number, newRecipe: Recipe) {
+    const newIndex = this.recipes.findIndex(item => item.id === index);
+    this.recipes[newIndex] = newRecipe;
     this.recipesChanged.next(this.recipes.slice());
+  }
+
+  deleteRecipe(index: number) {
+    // for id's
+    if (index > 10) {
+      this.recipes = this.recipes.filter(item => item.id !== index)
+    } else {
+      // for index
+      this.recipes.splice(index, 1);
+    }
+    this.recipesChanged.next(this.recipes.slice());
+    console.log(this.recipes)
+
   }
 }
