@@ -55,6 +55,11 @@ export class RecipeEditComponent implements OnInit {
       'amount': new FormControl(null, [Validators.required, this.checkPattern.bind(this)]),
     });
     (this.recipeForm.get('ingredients') as FormArray).push(ingredient)
+    console.log(this.recipeForm.get('ingredients'))
+  }
+
+  onDeleteIngredient(i: number) {
+    (this.recipeForm.get('ingredients') as FormArray).removeAt(i);
   }
 
   checkPattern(control: FormControl): { [s: string]: boolean } | null {
@@ -98,6 +103,5 @@ export class RecipeEditComponent implements OnInit {
       'description': new FormControl(recipeDescription, [Validators.required]),
       'ingredients': recipeIngredients
     })
-    console.log(this.recipeForm)
   }
 }
