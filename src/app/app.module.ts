@@ -22,6 +22,7 @@ import {DropdownDirective} from "./shared/dropdown.directive";
 // services
 import {ShoppingListService} from "./shopping-list/shopping-list.service";
 import {RecipeService} from "./recipes/recipe.service";
+import {AuthComponent} from "./auth/auth.component";
 
 
 @NgModule({
@@ -36,14 +37,15 @@ import {RecipeService} from "./recipes/recipe.service";
     ShoppingEditComponent,
     DropdownDirective,
     RecipeStartComponent,
-    RecipeEditComponent
+    RecipeEditComponent,
+    AuthComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    AppRoutingModule
+    AppRoutingModule,
   ],
   providers: [ShoppingListService, RecipeService],
   bootstrap: [AppComponent]
