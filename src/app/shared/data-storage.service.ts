@@ -16,4 +16,11 @@ export class DataStorageService {
       console.log(responseRecipes)
     })
   }
+
+  fetchRecipes() {
+    this.http.get<Recipe[]>('https://ng-course-recipe-book-35b68-default-rtdb.firebaseio.com/recipes.json')
+      .subscribe(responseRecipes => {
+        this.recipeService.setRecipes(responseRecipes)
+      })
+  }
 }

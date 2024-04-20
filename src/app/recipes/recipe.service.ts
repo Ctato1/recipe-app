@@ -24,6 +24,11 @@ export class RecipeService {
       1),
   ]
 
+  setRecipes(recipes:Recipe[]){
+    this.recipes = recipes;
+    this.recipesChanged.next(this.recipes.slice());
+  }
+
   getRecipe(id: number) {
     return this.recipes.filter((recipe: Recipe) => recipe.id === id)[0]
   }
