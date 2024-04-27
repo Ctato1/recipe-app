@@ -35,7 +35,6 @@ import {AuthModule} from "./auth/auth.module";
     ShoppingListModule,
     SharedModule,
     CoreModule,
-    AuthModule
   ],
 
   bootstrap: [AppComponent]
