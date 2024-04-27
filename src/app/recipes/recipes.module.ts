@@ -29,13 +29,5 @@ import {DropdownDirective} from "../shared/dropdown.directive";
     RecipesRoutingModule,
 
   ],
-  exports: [
-    RecipesComponent,
-    RecipeListComponent,
-    RecipeDetailComponent,
-    RecipeItemComponent,
-    RecipeStartComponent,
-    RecipeEditComponent,
-  ],
 })
 export class RecipesModule {}
