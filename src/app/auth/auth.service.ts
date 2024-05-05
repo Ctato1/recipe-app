@@ -3,6 +3,7 @@ import {HttpClient, HttpErrorResponse} from "@angular/common/http";
 import {BehaviorSubject, catchError, tap, throwError} from "rxjs";
 import {User} from "./user.model";
 import {Router} from "@angular/router";
+import {enviroment} from "../../enviroments/enviroment";
 
 export interface AuthResponseData {
   idToken: string;
@@ -18,13 +19,13 @@ export interface AuthResponseData {
 })
 export class AuthService {
   user = new BehaviorSubject<User | null>(null);
-  private tokenExpirationTimer!:any;
+  private tokenExpirationTimer!: any;
 
   constructor(private http: HttpClient, private router: Router) {
   }
 
   signup(email: string, password: string) {
-    return this.http.post<AuthResponseData>('https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyCXoNmmE1xQaGugAynzojezWA9eM8egQl8',
+    return this.http.post<AuthResponseData>('https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=' + enviroment.firebaseAOIKey,
       {
         email: email,
         password: password,
@@ -36,7 +37,7 @@ export class AuthService {
   }
 
   login(email: string, password: string) {
-    return this.http.post<AuthResponseData>('https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyCXoNmmE1xQaGugAynzojezWA9eM8egQl8',
+    return this.http.post<AuthResponseData>('https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=' + enviroment.firebaseAOIKey,
       {
         email: email,
         password: password,
@@ -71,16 +72,16 @@ export class AuthService {
     this.user.next(null);
     localStorage.removeItem('userData');
     this.router.navigate(['/auth'])
-    if(this.tokenExpirationTimer){
+    if (this.tokenExpirationTimer) {
       clearTimeout(this.tokenExpirationTimer);
     }
     this.tokenExpirationTimer = null;
   }
 
-  autoLogout(expirationDuration:number){
-    this.tokenExpirationTimer = setTimeout(()=>{
+  autoLogout(expirationDuration: number) {
+    this.tokenExpirationTimer = setTimeout(() => {
       this.logout();
-    },expirationDuration)
+    }, expirationDuration)
   }
 
   private handleAuthentication(email: string, localId: string, idToken: string, expiresIn: number) {
