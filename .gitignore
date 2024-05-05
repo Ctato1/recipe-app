@@ -5,8 +5,9 @@
 /tmp
 /out-tsc
 /bazel-out
-./src/enviroments/enviroment.ts
-./src/enviroments/enviroment.prod.ts
+.gitignore
+/src/enviroments/enviroment.ts
+/src/enviroments/enviroment.prod.ts
 # Node
 /node_modules
 npm-debug.log
