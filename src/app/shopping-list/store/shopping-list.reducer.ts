@@ -8,7 +8,10 @@ const initialState = {
     new Ingredient('Peanut', 9)
   ]
 }
-
+// updateIngredient(index: number, newIngredient: Ingredient) {
+//   this.ingredients[index] = newIngredient;
+//   this.changedIngredient.next(this.ingredients.slice());
+// }
 export function ShoppingListReducer(state = initialState,action:ShoppingListActions.ShoppingListActions) {
     switch (action.type){
       case ShoppingListActions.ADD_INGREDIENT:
@@ -27,6 +30,27 @@ export function ShoppingListReducer(state = initialState,action:ShoppingListActi
             ...action.payload
           ]
         }
+      case ShoppingListActions.UPDATE_INGREDIENT:
+        const ingredient = state.ingredients[action.payload.index];
+        const updatedIngredient = {
+          ...ingredient,
+          ...action.payload.ingredient
+        }
+        const updatedIngredients = [...state.ingredients];
+        updatedIngredients[action.payload.index] = updatedIngredient
+        return {
+          ...state,
+          ingredients:updatedIngredients
+        }
+      case ShoppingListActions.DELETE_INGREDIENT:
+
+        return {
+          ...state,
+          ingredients: state.ingredients.filter((ingredient,index)=>{
+            return index !== action.payload
+          })
+        }
+
       default:
         return state
     }
