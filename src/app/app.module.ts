@@ -4,6 +4,7 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 // router
 import {AppRoutingModule} from './app-routing.module';
+import {StoreModule} from "@ngrx/store";
 // components
 import {AppComponent} from './app.component';
 import {HeaderComponent} from './header/header.component';
@@ -16,6 +17,8 @@ import {HeaderComponent} from './header/header.component';
 
 import {SharedModule} from "./shared/shared.module";
 import {CoreModule} from "./core.module";
+import {ShoppingListReducer} from "./shopping-list/store/shopping-list.reducer";
+
 
 
 @NgModule({
@@ -30,6 +33,8 @@ import {CoreModule} from "./core.module";
     AppRoutingModule,
     SharedModule,
     CoreModule,
+    // @ts-ignore
+    StoreModule.forRoot({shoppingList:ShoppingListReducer}),
   ],
 
   bootstrap: [AppComponent]
