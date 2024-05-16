@@ -3,7 +3,7 @@
     <div class="navbar-header">
       <a href="#" class="navbar-brand">Recipe Book</a>
     </div>
-    <div class="collapse navbar-collapse">
+    <div>
       <ul class="nav navbar-nav">
         <li routerLinkActive="active"><a routerLink="/recipes" *ngIf="isAuthenticated">Recipes</a></li>
         <li routerLinkActive="active"><a routerLink="/auth" *ngIf="!isAuthenticated">Authenticate</a></li>
